@@ -2,31 +2,15 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-   public Transform target;
-   public Vector3 offset;
-   [Range(1,10)]
-   public float smoothFactor;
-   public Vector3 minValues, maxValue;
+    public Transform player;
+    public Vector3 offset;
+    //[Range(1,10)]
+    //public float smoothFactor;
 
-   private void FixedUpdate()
+    private void FixedUpdate()
     {
-        
-        
-        Follow();
-    }
-
-    void Follow()
-    {
-        Vector3 targetPosition = target.position + offset;
-        //Verify if the targetPosition is out of bound or not
-        //Limit it to the min and max values
-         Vector3 boundPosition = new Vector3(
-            Mathf.Clamp(targetPosition.x, minValues.x, maxValue.x),
-            Mathf.Clamp(targetPosition.y, minValues.y, maxValue.y),
-            Mathf.Clamp(targetPosition.z, minValues.z, maxValue.z));
-        
-
-        Vector3 smoothPosition = Vector3.Lerp(transform.position, targetPosition, smoothFactor*Time.fixedDeltaTime);
-        transform.position = smoothPosition;
+        Vector3 cameraPosition = player.position + offset;
+        //cameraPosition = Vector3.Lerp(transform.position, cameraPosition, smoothFactor*Time.fixedDeltaTime);
+        transform.position = cameraPosition; 
     }
 }
